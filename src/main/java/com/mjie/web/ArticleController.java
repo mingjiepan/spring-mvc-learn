@@ -1,12 +1,10 @@
 package com.mjie.web;
 
+import com.mjie.common.BaseResp;
 import com.mjie.web.params.QueryArticleDetailParam;
 import com.mjie.web.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author panmingjie
@@ -22,5 +20,11 @@ public class ArticleController {
     @PostMapping(value = "/queryDetail", name = "")
     public String getArticle(@RequestBody QueryArticleDetailParam param) {
         return articleService.queryDetail(param.getTitle());
+    }
+
+
+    @ExceptionHandler(value = Exception.class)
+    public BaseResp handleException() {
+        return new BaseResp();
     }
 }
